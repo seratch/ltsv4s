@@ -1,0 +1,32 @@
+package com.github.seratch.ltsv4s
+
+/*
+;; ABNF <https://tools.ietf.org/html/rfc5234>
+
+ltsv = *(record NL) [record]
+record = [field *(TAB field)]
+field = label ":" field-value
+label = 1*lbyte
+field-value = *fbyte
+
+TAB = %x09
+NL = [%x0D] %x0A
+lbyte = %x30-39 / %x41-5A / %x61-7A / "_" / "." / "-" ;; [0-9A-Za-z_.-]
+fbyte = %x01-08 / %x0B / %x0C / %x0E-FF
+*/
+import scala.util.parsing.combinator.RegexParsers
+
+object LTSVParser extends RegexParsers {
+
+  def ltsv = repsep(record, nl)
+  def record = repsep(field, tab) ^^ { _.toMap }
+  def field = label ~ ":" ~ fieldValue ^^ { case k ~ ":" ~ v => (k, v) }
+  def label = "[0-9A-Za-z_\\.-]+".r
+  def fieldValue = """[\u000B\u000C\u0001-\u0008\u000E-\u00FF]+""".r
+  def tab = '\t'
+  def nl = opt('\r') <~ '\n'
+
+  def parse(input: String): List[Map[String, String]] = parse(ltsv, input).getOrElse(Nil)
+
+}
+
