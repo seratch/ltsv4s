@@ -5,18 +5,38 @@ import org.scalatest.matchers._
 
 class LTSVSpec extends FlatSpec with ShouldMatchers {
 
-  behavior of "TLSV"
+  behavior of "LTSV.parseLines"
 
   it should "work fine with LF" in {
-    val ltsvList: List[Map[String, String]] = LTSV.parse("name:Alice\tage:19\n\tname:Bob\nname:Chris\tage:25")
+    val ltsvList: List[Map[String, String]] = LTSV.parseLines("name:Alice\tage:19\n\tname:Bob\nname:Chris\tage:25")
     ltsvList.size should equal(3)
     LTSV.dump(ltsvList).mkString("\n") should equal("name:Alice\tage:19\nname:Bob\nname:Chris\tage:25")
   }
 
   it should "work fine with CRLF" in {
-    val ltsvList: List[Map[String, String]] = LTSV.parse("name:Alice\tage:19\r\n\tname:Bob\nname:Chris\tage:25")
+    val ltsvList: List[Map[String, String]] = LTSV.parseLines("name:Alice\tage:19\r\n\tname:Bob\nname:Chris\tage:25")
     ltsvList.size should equal(3)
     LTSV.dump(ltsvList).mkString("\n") should equal("name:Alice\tage:19\nname:Bob\nname:Chris\tage:25")
+  }
+
+  it should "throw Exception if failed" in {
+    intercept[IllegalArgumentException] {
+      LTSV.parseLines(":")
+    }
+  }
+
+  behavior of "LTSV.parseLine"
+
+  it should "work fine with 1 value" in {
+    val ltsv: Map[String, String] = LTSV.parseLine("name:Alice")
+    ltsv.size should equal(1)
+    LTSV.dump(ltsv) should equal("name:Alice")
+  }
+
+  it should "work fine with 2 values" in {
+    val ltsv: Map[String, String] = LTSV.parseLine("name:Alice\tage:19")
+    ltsv.size should equal(2)
+    LTSV.dump(ltsv) should equal("name:Alice\tage:19")
   }
 
 }
