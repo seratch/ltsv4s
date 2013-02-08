@@ -1,4 +1,6 @@
-# ltsv4s: LTSV parser for Scala
+# LTSV4S
+
+LTSV Parser implementation in Scala
 
 ## What's LTSV?
 
