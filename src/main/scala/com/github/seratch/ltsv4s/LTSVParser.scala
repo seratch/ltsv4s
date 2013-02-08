@@ -26,7 +26,10 @@ object LTSVParser extends RegexParsers {
   def tab = '\t'
   def nl = opt('\r') <~ '\n'
 
-  def parse(input: String): List[Map[String, String]] = parse(ltsv, input).getOrElse(Nil)
+  def parse(input: String): List[Map[String, String]] = parseAll(ltsv, input).getOrElse {
+    throw new IllegalArgumentException("Failed to parse ltsv: " + 
+      (if (input.size > 1000) "\"" + input.take(1000) + "..." + "\"" else "\"" + input + "\""))
+  }
 
 }
 

@@ -19,14 +19,12 @@ libraryDependencies += "com.github.seratch" %% "ltsv4s" % "0.1.0"
 ```scala
 import com.github.seratch.ltsv4s._
 
-val logs: List[Map[String, String]] = LTSV.parse("field1:value1\tfield2:value2\tfield3:value3")
+val log: Map[String, String] = LTSV.parseLine("field1:value1\tfield2:value2")
+val line: String = LTSV.dump(log)
+
+val logs: List[Map[String, String]] = LTSV.parseLines("field1:value1\tfield2:value2\nfield1:value1\tfield2:value2")
 val lines: List[String] = LTSV.dump(logs)
 ```
-
-## TODO
-
-- File input
-- Streaming
 
 ## License
 
