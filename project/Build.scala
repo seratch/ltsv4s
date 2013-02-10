@@ -8,7 +8,7 @@ object LTSV4SProject extends Build {
   lazy val mainSettings: Seq[Project.Setting[_]] = Defaults.defaultSettings ++ Seq(
     organization := "com.github.seratch",
     name := "ltsv4s",
-    version := "0.2.0",
+    version := "0.2.1",
     crossScalaVersions := Seq("2.10.0", "2.9.2"),
     publishTo <<= version { (v: String) => 
       val nexus = "https://oss.sonatype.org/"

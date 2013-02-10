@@ -8,15 +8,15 @@ class LTSVSpec extends FlatSpec with ShouldMatchers {
   behavior of "LTSV.parseLines"
 
   it should "work fine with LF" in {
-    val ltsvList: List[Map[String, String]] = LTSV.parseLines("name:Alice\tage:19\n\tname:Bob\nname:Chris\tage:25")
+    val ltsvList: List[Map[String, String]] = LTSV.parseLines("name:Alice\tage:19\nname:Bob\tage:\nname:Chris\tage:25")
     ltsvList.size should equal(3)
-    LTSV.dump(ltsvList).mkString("\n") should equal("name:Alice\tage:19\nname:Bob\nname:Chris\tage:25")
+    LTSV.dump(ltsvList).mkString("\n") should equal("name:Alice\tage:19\nname:Bob\tage:\nname:Chris\tage:25")
   }
 
   it should "work fine with CRLF" in {
-    val ltsvList: List[Map[String, String]] = LTSV.parseLines("name:Alice\tage:19\r\n\tname:Bob\nname:Chris\tage:25")
+    val ltsvList: List[Map[String, String]] = LTSV.parseLines("name:Alice\tage:19\r\nname:Bobson\tage:\tnickname:Bob\nname:Chris\tage:25")
     ltsvList.size should equal(3)
-    LTSV.dump(ltsvList).mkString("\n") should equal("name:Alice\tage:19\nname:Bob\nname:Chris\tage:25")
+    LTSV.dump(ltsvList).mkString("\n") should equal("name:Alice\tage:19\nname:Bobson\tage:\tnickname:Bob\nname:Chris\tage:25")
   }
 
   it should "throw Exception if failed" in {
@@ -37,6 +37,12 @@ class LTSVSpec extends FlatSpec with ShouldMatchers {
     val ltsv: Map[String, String] = LTSV.parseLine("name:Alice\tage:19")
     ltsv.size should equal(2)
     LTSV.dump(ltsv) should equal("name:Alice\tage:19")
+  }
+
+  it should "throw Exception if failed" in {
+    intercept[IllegalArgumentException] {
+      LTSV.parseLine(":")
+    }
   }
 
 }
