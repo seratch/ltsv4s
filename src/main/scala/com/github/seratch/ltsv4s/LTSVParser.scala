@@ -24,7 +24,7 @@ object LTSVParser extends RegexParsers {
   def record = repsep(field, tab) ^^ { _.toMap }
   def field = label ~ ":" ~ fieldValue ^^ { case k ~ ":" ~ v => (k, v) }
   def label = "[0-9A-Za-z_\\.-]+".r
-  def fieldValue = opt("""[\u000B\u000C\u0001-\u0008\u000E-\u00FF]+""".r) ^^ { _.getOrElse("") }
+  def fieldValue = """[\u000B\u000C\u0001-\u0008\u000E-\u00FF]*""".r
   def tab = '\t'
   def nl = opt('\r') <~ '\n'
 
