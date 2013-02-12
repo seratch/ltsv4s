@@ -11,7 +11,7 @@ object LTSV {
   }
 
   def dump(values: List[Map[String, String]]): List[String] = {
-    values.map { _.map { case (k, v) => k + ":" + v }.mkString("\t") }
+    values.map { dump(_) }
   }
 
 }
