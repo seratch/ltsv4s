@@ -31,6 +31,14 @@ val logs: List[Map[String, String]] = LTSV.parseLines("field1:value1\tfield2:val
 val lines: List[String] = LTSV.dump(logs)
 ```
 
+In lenient mode, the parser will allow any character in a field value, apart from tab and newline chars.
+
+```scala
+val ltsv: Map[String, String] = LTSV.parseLine("name:クリス\tage:28", lenient=true)
+ltsv.size should equal(2)
+ltsv("name") should equal("クリス")
+```
+
 ## License
 
 Apache License, Version 2.0
