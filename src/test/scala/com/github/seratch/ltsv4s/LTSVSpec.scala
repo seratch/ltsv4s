@@ -45,4 +45,17 @@ class LTSVSpec extends FlatSpec with ShouldMatchers {
     }
   }
 
+  it should "fail to parse invalid LTSV if in strict mode" in {
+    intercept[IllegalArgumentException] {
+      LTSV.parseLine("name:クリス\tage:28")
+    }
+  }
+
+  it should "allow invalid LTSV if in lenient mode" in {
+    val ltsv: Map[String, String] = LTSV.parseLine("name:クリス\tage:28", lenient=true)
+    ltsv.size should equal(2)
+    ltsv("name") should equal("クリス")
+  }
+
+
 }
