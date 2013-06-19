@@ -2,9 +2,11 @@ package com.github.seratch.ltsv4s
 
 object LTSV {
 
-  def parseLine(line: String): Map[String, String] = LTSVParser.parse(line).head
+  def parseLine(line: String, lenient: Boolean = false): Map[String, String] = 
+    LTSVParser.parse(line, lenient).head
 
-  def parseLines(lines: String): List[Map[String, String]] = LTSVParser.parse(lines)
+  def parseLines(lines: String, lenient: Boolean = false): List[Map[String, String]] = 
+    LTSVParser.parse(lines, lenient)
 
   def dump(value: Map[String, String]): String = {
     value.map { case (k, v) => k + ":" + v }.mkString("\t")
