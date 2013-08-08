@@ -41,6 +41,8 @@ ltsv("name") should equal("クリス")
 
 ## License
 
+Copyright 2013 Kazuhiro Sera
+
 Apache License, Version 2.0
 
 http://www.apache.org/licenses/LICENSE-2.0.html
