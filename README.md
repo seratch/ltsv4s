@@ -16,7 +16,7 @@ Add ltsv4s to dependencies.
 // if you want to use latest version
 // resolvers += "sonatype releases" at "http://oss.sonatype.org/content/repositories/releases"
 
-libraryDependencies += "com.github.seratch" %% "ltsv4s" % "[0.2,)"
+libraryDependencies += "com.github.seratch" %% "ltsv4s" % "1.0.0"
 ```
 
 ### Example
@@ -41,7 +41,7 @@ ltsv("name") should equal("クリス")
 
 ## License
 
-Copyright 2013 Kazuhiro Sera
+Copyright 2013 - 2014 Kazuhiro Sera
 
 Apache License, Version 2.0
 
