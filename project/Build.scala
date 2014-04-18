@@ -8,8 +8,8 @@ object LTSV4SProject extends Build {
   lazy val mainSettings: Seq[Project.Setting[_]] = Defaults.defaultSettings ++ Seq(
     organization := "com.github.seratch",
     name := "ltsv4s",
-    version := "0.2.2",
-    crossScalaVersions := Seq("2.10.0", "2.9.3", "2.9.2", "2.9.1"),
+    version := "1.0.0",
+    crossScalaVersions := Seq("2.11.0", "2.10.3"),
     publishTo <<= version { (v: String) => 
       val nexus = "https://oss.sonatype.org/"
       if (v.trim.endsWith("SNAPSHOT")) Some("snapshots" at nexus + "content/repositories/snapshots")
@@ -17,10 +17,15 @@ object LTSV4SProject extends Build {
     },
     publishMavenStyle := true,
     libraryDependencies <++= (scalaVersion) { scalaVersion =>
-      Seq("org.scalatest" %% "scalatest" % "1.9.1" % "test")
+      Seq("org.scalatest" %% "scalatest" % "2.1.3" % "test") ++ (scalaVersion match {
+        case v if v.startsWith("2.11.") => Seq("org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.1" % "compile")
+        case _ => Nil
+      })
     },
     sbtPlugin := false,
-    scalacOptions ++= Seq("-unchecked"),
+    transitiveClassifiers in Global := Seq(Artifact.SourceClassifier),
+    incOptions := incOptions.value.withNameHashing(true),
+    scalacOptions ++= Seq("-deprecation", "-unchecked"),
     publishMavenStyle := true,
     publishArtifact in Test := false,
     pomIncludeRepository := { x => false },
