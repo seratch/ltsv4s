@@ -2,6 +2,8 @@
 
 LTSV Parser implementation in Scala
 
+[![Build Status](https://travis-ci.org/seratch/ltsv4s.svg?branch=develop)](https://travis-ci.org/seratch/ltsv4s)
+
 ## What's LTSV?
 
 http://ltsv.org/
