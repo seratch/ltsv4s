@@ -8,8 +8,8 @@ object LTSV4SProject extends Build {
   lazy val mainSettings: Seq[Project.Setting[_]] = Seq(
     organization := "com.github.seratch",
     name := "ltsv4s",
-    version := "1.0.1",
-    crossScalaVersions := Seq("2.11.1", "2.10.4"),
+    version := "1.0.2",
+    crossScalaVersions := Seq("2.11.2", "2.10.4"),
     publishTo <<= version { (v: String) => 
       val nexus = "https://oss.sonatype.org/"
       if (v.trim.endsWith("SNAPSHOT")) Some("snapshots" at nexus + "content/repositories/snapshots")
@@ -18,7 +18,7 @@ object LTSV4SProject extends Build {
     publishMavenStyle := true,
     libraryDependencies <++= (scalaVersion) { scalaVersion =>
       Seq("org.scalatest" %% "scalatest" % "2.2.0" % "test") ++ (scalaVersion match {
-        case v if v.startsWith("2.11.") => Seq("org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.1" % "compile")
+        case v if v.startsWith("2.11.") => Seq("org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.2" % "compile")
         case _ => Nil
       })
     },
