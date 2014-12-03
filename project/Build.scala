@@ -5,11 +5,11 @@ object LTSV4SProject extends Build {
 
   lazy val root = Project("root", file("."), settings = mainSettings)
 
-  lazy val mainSettings: Seq[Project.Setting[_]] = Seq(
+  lazy val mainSettings = Seq(
     organization := "com.github.seratch",
     name := "ltsv4s",
-    version := "1.0.2",
-    crossScalaVersions := Seq("2.11.2", "2.10.4"),
+    version := "1.0.3-SNAPSHOT",
+    crossScalaVersions := Seq("2.11.4", "2.10.4"),
     publishTo <<= version { (v: String) => 
       val nexus = "https://oss.sonatype.org/"
       if (v.trim.endsWith("SNAPSHOT")) Some("snapshots" at nexus + "content/repositories/snapshots")
