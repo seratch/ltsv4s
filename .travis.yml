@@ -1,5 +1,9 @@
 language: scala
 scala:
-  - 2.10.4
-  - 2.11.0
-
+- 2.10.4
+- 2.11.4
+script: sbt clean coverage test
+after_success: sbt coveralls
+env:
+  global:
+    secure: QA7ueWQOPMa4OV0pDSXdlHJLj2PSwTFgjqJUd210+3ZcI5WVc5AG/KsQ2GbK3tUXTgYW8ryBd92UoCCXHZTpAjG6lNrocaYv/7dt00D3jmnqolvbJLduSqxTCNJEsohqAKijxapZARwu2ALlTaGrkAF31KMDp58SIZhw++pDpeI=
