@@ -51,9 +51,15 @@ class LTSVSpec extends FlatSpec with Matchers {
   }
 
   it should "allow invalid LTSV if in lenient mode" in {
-    val ltsv: Map[String, String] = LTSV.parseLine("name:クリス\tage:28", lenient=true)
+    val ltsv: Map[String, String] = LTSV.parseLine("name:クリス\tage:28", lenient = true)
     ltsv.size should equal(2)
     ltsv("name") should equal("クリス")
+  }
+
+  it should "allow invalid LTSV field name if in lenient mode" in {
+    val ltsv: Map[String, String] = LTSV.parseLine("name^Cummy:Foo^Bar\tage:28", lenient = true)
+    ltsv.size should equal(2)
+    ltsv("name^Cummy") should equal("Foo^Bar")
   }
 
   behavior of "LTSV.dump"

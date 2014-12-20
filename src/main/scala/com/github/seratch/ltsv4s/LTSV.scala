@@ -2,7 +2,7 @@ package com.github.seratch.ltsv4s
 
 object LTSV {
 
-  def parseLine(line: String, lenient: Boolean = false): Map[String, String] = 
+  def parseLine(line: String, lenient: Boolean = false): Map[String, String] =
     LTSVParser.parse(line, lenient).head
 
   def parseLines(lines: String, lenient: Boolean = false): List[Map[String, String]] =
