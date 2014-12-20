@@ -18,7 +18,7 @@ import scala.util.parsing.combinator.RegexParsers
 
 /**
  * Parser configuration
- * 
+ *
  * @param lenient Allow a wider range of characters in field values than the LTSV spec
  */
 case class LTSVParserConfig(lenient: Boolean = false)
@@ -42,13 +42,13 @@ class LTSVParser(config: LTSVParserConfig) extends RegexParsers {
   def nl = opt('\r') <~ '\n'
 
   def parse(input: String): List[Map[String, String]] = parseAll(ltsv, input).getOrElse {
-    throw new IllegalArgumentException("Failed to parse ltsv: " + 
+    throw new IllegalArgumentException("Failed to parse ltsv: " +
       (if (input.size > 1000) "\"" + input.take(1000) + "..." + "\"" else "\"" + input + "\""))
   }
 
 }
 
 object LTSVParser {
-  def parse(input: String, lenient: Boolean = false): List[Map[String, String]] = 
+  def parse(input: String, lenient: Boolean = false): List[Map[String, String]] =
     new LTSVParser(LTSVParserConfig(lenient)).parse(input)
 }
