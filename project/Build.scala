@@ -9,12 +9,12 @@ object LTSV4SProject extends Build {
     organization := "com.github.seratch",
     name := "ltsv4s",
     version := "1.0.4-SNAPSHOT",
-    scalaVersion := "2.11.6",
-    crossScalaVersions := Seq("2.11.6", "2.10.5"),
+    scalaVersion := "2.11.7",
+    crossScalaVersions := Seq("2.11.7", "2.10.6"),
     publishMavenStyle := true,
     libraryDependencies <++= (scalaVersion) { scalaVersion =>
-      Seq("org.scalatest" %% "scalatest" % "2.2.4" % "test") ++ (scalaVersion match {
-        case v if v.startsWith("2.11.") => Seq("org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.3" % "compile")
+      Seq("org.scalatest" %% "scalatest" % "2.2.5" % "test") ++ (scalaVersion match {
+        case v if v.startsWith("2.11.") => Seq("org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.4" % "compile")
         case _ => Nil
       })
     },
