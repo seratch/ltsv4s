@@ -18,18 +18,3 @@ lazy val root =
         "org.scalatest" %% "scalatest" % "3.2.11" % Test
       )
     )
-    .settings(
-      // publish
-      homepage := Some(url("https://seratch.github.com/ltsv4s")),
-      licenses := Seq(
-        "Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")
-      ),
-      developers := List(
-        Developer(
-          "seratch",
-          "Kazuhiro Sera",
-          "seratch@gmail.com",
-          url("http://seratch.net/")
-        )
-      )
-    )
