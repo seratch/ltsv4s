@@ -1,0 +1,26 @@
+name: Check
+on:
+  push
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.0.2
+      - name: Setup Scala
+        uses: olafurpg/setup-scala@v13
+        with:
+          java-version: openjdk@1.17.0
+      - name: Check scalafmtCheck
+        run: sbt scalafmtCheckAll scalafmtSbtCheck
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.0.2
+      - name: Setup Scala
+        uses: olafurpg/setup-scala@v13
+        with:
+          java-version: openjdk@1.17.0
+      - name: Tests
+        run: sbt clean coverage +test

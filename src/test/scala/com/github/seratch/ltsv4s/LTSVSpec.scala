@@ -1,21 +1,29 @@
 package com.github.seratch.ltsv4s
 
-import org.scalatest._
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers._
 
-class LTSVSpec extends FlatSpec with Matchers {
+class LTSVSpec extends AnyFlatSpec {
 
   behavior of "LTSV.parseLines"
 
   it should "work fine with LF" in {
-    val ltsvList: List[Map[String, String]] = LTSV.parseLines("name:Alice\tage:19\nname:Bob\tage:\nname:Chris\tage:25")
+    val ltsvList: List[Map[String, String]] =
+      LTSV.parseLines("name:Alice\tage:19\nname:Bob\tage:\nname:Chris\tage:25")
     ltsvList.size should equal(3)
-    LTSV.dump(ltsvList).mkString("\n") should equal("name:Alice\tage:19\nname:Bob\tage:\nname:Chris\tage:25")
+    LTSV.dump(ltsvList).mkString("\n") should equal(
+      "name:Alice\tage:19\nname:Bob\tage:\nname:Chris\tage:25"
+    )
   }
 
   it should "work fine with CRLF" in {
-    val ltsvList: List[Map[String, String]] = LTSV.parseLines("name:Alice\tage:19\r\nname:Bobson\tage:\tnickname:Bob\nname:Chris\tage:25")
+    val ltsvList: List[Map[String, String]] = LTSV.parseLines(
+      "name:Alice\tage:19\r\nname:Bobson\tage:\tnickname:Bob\nname:Chris\tage:25"
+    )
     ltsvList.size should equal(3)
-    LTSV.dump(ltsvList).mkString("\n") should equal("name:Alice\tage:19\nname:Bobson\tage:\tnickname:Bob\nname:Chris\tage:25")
+    LTSV.dump(ltsvList).mkString("\n") should equal(
+      "name:Alice\tage:19\nname:Bobson\tage:\tnickname:Bob\nname:Chris\tage:25"
+    )
   }
 
   it should "throw Exception if failed" in {
@@ -51,13 +59,15 @@ class LTSVSpec extends FlatSpec with Matchers {
   }
 
   it should "allow invalid LTSV if in lenient mode" in {
-    val ltsv: Map[String, String] = LTSV.parseLine("name:クリス\tage:28", lenient = true)
+    val ltsv: Map[String, String] =
+      LTSV.parseLine("name:クリス\tage:28", lenient = true)
     ltsv.size should equal(2)
     ltsv("name") should equal("クリス")
   }
 
   it should "allow invalid LTSV field name if in lenient mode" in {
-    val ltsv: Map[String, String] = LTSV.parseLine("name^Cummy:Foo^Bar\tage:28", lenient = true)
+    val ltsv: Map[String, String] =
+      LTSV.parseLine("name^Cummy:Foo^Bar\tage:28", lenient = true)
     ltsv.size should equal(2)
     ltsv("name^Cummy") should equal("Foo^Bar")
   }
@@ -76,5 +86,4 @@ class LTSVSpec extends FlatSpec with Matchers {
     val string = LTSV.dump("a" -> "b", "c" -> "d", "e" -> "f", "g" -> "h")
     string should be("a:b\tc:d\te:f\tg:h")
   }
-
 }
