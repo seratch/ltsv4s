@@ -17,9 +17,6 @@ http://ltsv.org/
 Add ltsv4s to libraryDependencies.
 
 ```scala
-// if you want to use latest version
-// resolvers += "sonatype releases" at "http://oss.sonatype.org/content/repositories/releases"
-
 libraryDependencies += "com.github.seratch" %% "ltsv4s" % "1.0.+"
 ```
 
