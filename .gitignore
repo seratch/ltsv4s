@@ -60,3 +60,4 @@ db
 sbt
 
 logs
+.bsp/

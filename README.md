@@ -43,9 +43,16 @@ ltsv.size should equal(2)
 ltsv("name") should equal("クリス")
 ```
 
+## How to release this library
+
+```bash
+sbt test
+sbt ++publishSigned sonatypeBundleRelease
+```
+
 ## License
 
-Copyright 2013 - 2015 Kazuhiro Sera
+Copyright 2013 - Kazuhiro Sera
 
 Apache License, Version 2.0
 
