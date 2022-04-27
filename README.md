@@ -4,7 +4,7 @@ LTSV Parser implementation in Scala
 
 [![Build Status](https://travis-ci.org/seratch/ltsv4s.svg?branch=develop)](https://travis-ci.org/seratch/ltsv4s)
 [![Coverage Status](https://coveralls.io/repos/seratch/ltsv4s/badge.png?branch=develop)](https://coveralls.io/r/seratch/ltsv4s?branch=develop)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.seratch/ltsv4s_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.seratch/ltsv4s_2.11)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.seratch/ltsv4s_2.13/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.seratch/ltsv4s_2.13)
 
 ## What's LTSV?
 
