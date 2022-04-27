@@ -4,7 +4,7 @@ lazy val root =
       organization := "com.github.seratch",
       name := "ltsv4s",
       publishTo := sonatypePublishToBundle.value,
-      pomExtra := _pomExtra,
+      pomExtra := _pomExtra
     )
     .settings(
       // compiler
@@ -19,7 +19,6 @@ lazy val root =
         "org.scalatest" %% "scalatest" % "3.2.11" % Test
       )
     )
-
 
 val _pomExtra = <url>https://github.com/seratch/ltsv4s/</url>
     <licenses>
