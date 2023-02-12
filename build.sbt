@@ -8,15 +8,15 @@ lazy val root =
     )
     .settings(
       // compiler
-      scalaVersion := "2.13.8",
+      scalaVersion := "3.2.2",
       scalacOptions ++= Seq("-deprecation", "-unchecked"),
-      crossScalaVersions := Seq("2.13.8", "2.12.15")
+      crossScalaVersions := Seq("3.2.2", "2.13.10", "2.12.17")
     )
     .settings(
       // dependencies
       libraryDependencies ++= Seq(
-        "org.scala-lang.modules" %% "scala-parser-combinators" % "2.1.1",
-        "org.scalatest" %% "scalatest" % "3.2.11" % Test
+        "org.scala-lang.modules" %% "scala-parser-combinators" % "2.2.0",
+        "org.scalatest" %% "scalatest" % "3.2.15" % Test
       )
     )
 
@@ -24,7 +24,7 @@ val _pomExtra = <url>https://github.com/seratch/ltsv4s/</url>
     <licenses>
       <license>
         <name>Apache License, Version 2.0</name>
-        <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+        <url>https://www.apache.org/licenses/LICENSE-2.0.html</url>
         <distribution>repo</distribution>
       </license>
     </licenses>
@@ -36,6 +36,6 @@ val _pomExtra = <url>https://github.com/seratch/ltsv4s/</url>
       <developer>
         <id>seratch</id>
         <name>Kazuhiro Sera</name>
-        <url>https://git.io/sera</url>
+        <url>https://github.com/seratch</url>
       </developer>
     </developers>
