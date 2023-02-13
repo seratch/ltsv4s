@@ -6,21 +6,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.0.2
+        uses: actions/checkout@v3.3.0
       - name: Setup Scala
-        uses: olafurpg/setup-scala@v13
+        uses: actions/setup-java@v3
         with:
-          java-version: openjdk@1.17.0
+          distribution: temurin
+          java-version: 17
+          cache: sbt
       - name: Check scalafmtCheck
-        run: sbt scalafmtCheckAll scalafmtSbtCheck
+        run: sbt scalafmtCheckAll Test/scalafmtCheckAll scalafmtSbtCheck
   test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.0.2
+        uses: actions/checkout@v3.3.0
       - name: Setup Scala
-        uses: olafurpg/setup-scala@v13
+        uses: actions/setup-java@v3
         with:
-          java-version: openjdk@1.17.0
+          distribution: temurin
+          java-version: 17
+          cache: sbt
       - name: Tests
-        run: sbt clean coverage +test
+        run: sbt clean coverage +test; sbt coverageReport
+      - name: Archive coverage
+        uses: actions/upload-artifact@v3
+        with:
+          name: scoverage-report
+          path: target/scala-3.2.2/scoverage-report
